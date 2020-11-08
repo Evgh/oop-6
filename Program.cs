@@ -11,7 +11,13 @@ namespace oop_5
         // для 6 лабы
         int Price { get; }
         int LifeTime { get; }
+        String Id { get; }
         protected CONDITION IsSold { get; set; }
+
+        void Print()
+        {
+            Console.WriteLine($"{Id}| срок службы (в годах): {LifeTime}| цена: {Price} | продано ли: {IsSold}");
+        }
 
         void ToSell()
         {
@@ -173,8 +179,13 @@ namespace oop_5
         static void Main(string[] args)
         {
             var comp = new Computer();
+            var comp2 = new Computer();
+            var comp3 = new Computer();
             var scan = new Scaner();
+            var scan2 = new Scaner();
             var tabl = new Tablet();
+
+            var lab = new Lab();
 
             IProduct icomp = null;
             Tech ttabl = null;
@@ -189,35 +200,29 @@ namespace oop_5
                 ttabl = tabl as Tech;
             }
 
+            lab.Add(comp);
+            lab.Add(comp2);
+            lab.Add(comp3);
+            lab.Add(scan);
+            lab.Add(scan2);
+            lab.Add(tabl);
 
-            Console.WriteLine($"Работает ли сканер? - {scan.IsItRunning()}");
-            scan.TurnOn();
-            Console.WriteLine($"А теперь работает? - {scan.IsItRunning()}\n");
-            Console.WriteLine($"Продали? {scan.IsSold}");
+            Console.WriteLine("Весь массив:");
+            lab.Print();
+            Console.WriteLine();
 
-            Console.WriteLine($"Работает ли комп? - {comp.IsItRunning()}");
-            comp.TurnOn();
-            Console.WriteLine($"Ну и ладно, что не работает, продадим");
-            icomp.ToSell();
-            //Console.WriteLine($"Продали? {icomp.IsSold}");
-            Console.WriteLine($"Попробуем продать еще?");
-            ((IProduct)comp).ToSell();
+            Console.WriteLine($"Количество компьютеров: {lab.CompAmount()}, сканеров: {lab.ScanAmount()}, планшетов: {lab.TablAmount()}\n");
 
+            Console.WriteLine("Отсортированный по цене в порядке убывания массив:");
+            lab.Sort();
+            Console.WriteLine();
 
-            Console.WriteLine($"\nВключим планшет");
-            ttabl.TurnOn();
-            if (ttabl.IsItRunning())
-            {
-                Console.WriteLine("Заработал");
-            }
-            else
-            {
-                Console.WriteLine("Почему-то не заработал");
-            }
+            lab.Remove(comp2);
+            lab.Remove(scan2);
+            Console.WriteLine("Удалили компьютер№2 и сканер №2:");
+            lab.Print();
+            Console.WriteLine();
 
-            Console.WriteLine("\n Теперь проверяем работу штук");
-            icomp.DoThing();
-            comp.DoThing();
         }
     }
 }
