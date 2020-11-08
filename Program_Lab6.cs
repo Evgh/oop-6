@@ -5,7 +5,6 @@ using System.Linq;
 namespace oop_5
 {
     // ---------------------------------------------------------------------------- добавлено в 6 лабе
-
     class Lab
     {
         List<IProduct> products;
@@ -60,16 +59,21 @@ namespace oop_5
     }
 
 
+    enum CONDITION { UNSOLD, SOLD};
+
+    struct Data
+    {
+        public int _price;
+        public int _life_time;
+        public int _id;
+        public CONDITION _is_sold;
+    }
 
     abstract partial class Tech
     {
         // -------------------------------------- добавлено в 6 лабе
         protected static int _amount;
-
-        protected int _price;
-        protected bool _is_sold;
-        protected int _id;
-        protected int _life_time;
+        protected Data _data;
     }
 
 
@@ -85,31 +89,34 @@ namespace oop_5
             _amount++;
 
             var rr = new Random();
+            _data = new Data();
 
-            _price = rr.Next(10, 100);
-            _is_sold = false;
-            _id = _amount + 1000;
-            _life_time = rr.Next(1, 5);
+            _data._is_sold = CONDITION.UNSOLD;
+            _data._price = rr.Next(10, 100);
+            _data._life_time = rr.Next(1, 5);
+            _data._id = _amount + 1000;
         }
+            
+    
 
         public static int Amount { get => _amount; }
-        int IProduct.Price { get => _price; }
-        bool IProduct.IsSold
+        int IProduct.Price { get => _data._price; }
+        CONDITION IProduct.IsSold
         {
-            get => _is_sold;
-            set => _is_sold = value;
+            get => _data._is_sold;
+            set => _data._is_sold = value;
         }
-        public bool IsSold
+        public CONDITION IsSold
         {
-            get => _is_sold;
+            get => _data._is_sold;
         }
         public int Id
         {
-            get => _id;
+            get => _data._id;
         }
         int IProduct.LifeTime
         {
-            get => _life_time;
+            get => _data._life_time;
         }
     }
 
@@ -125,31 +132,32 @@ namespace oop_5
             _amount++;
 
             var rr = new Random();
+            _data = new Data();
 
-            _price = rr.Next(10, 100);
-            _is_sold = false;
-            _id = _amount;
-            _life_time = rr.Next(1, 5);
+            _data._is_sold = CONDITION.UNSOLD;
+            _data._price = rr.Next(10, 100);
+            _data._life_time = rr.Next(1, 5);
+            _data._id = _amount + 1000;
         }
 
         public static int Amount { get => _amount; }
-        int IProduct.Price { get => _price; }
-        bool IProduct.IsSold
+        int IProduct.Price { get => _data._price; }
+        CONDITION IProduct.IsSold
         {
-            get => _is_sold;
-            set => _is_sold = value;
+            get => _data._is_sold;
+            set => _data._is_sold = value;
         }
-        public bool IsSold
+        public CONDITION IsSold
         {
-            get => _is_sold;
+            get => _data._is_sold;
         }
         public int Id
         {
-            get => _id;
+            get => _data._id;
         }
         int IProduct.LifeTime
         {
-            get => _life_time;
+            get => _data._life_time;
         }    
     }
 
@@ -165,32 +173,33 @@ namespace oop_5
             _amount++;
 
             var rr = new Random();
+            _data = new Data();
 
-            _price = rr.Next(10, 100);
-            _is_sold = false;
-            _id = _amount;
-            _life_time = rr.Next(1, 5);
+            _data._is_sold = CONDITION.UNSOLD;
+            _data._price = rr.Next(10, 100);
+            _data._life_time = rr.Next(1, 5);
+            _data._id = _amount + 1000;
         }
 
 
         public static int Amount { get => _amount; }
-        int IProduct.Price { get => _price; }
-        bool IProduct.IsSold
+        int IProduct.Price { get => _data._price; }
+        CONDITION IProduct.IsSold
         {
-            get => _is_sold;
-            set => _is_sold = value;
+            get => _data._is_sold;
+            set => _data._is_sold = value;
         }
-        public bool IsSold
+        public CONDITION IsSold
         {
-            get => _is_sold;
+            get => _data._is_sold;
         }
         public int Id
         {
-            get => _id;
+            get => _data._id;
         }
         int IProduct.LifeTime
         {
-            get => _life_time;
+            get => _data._life_time;
         }
 
     }

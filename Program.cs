@@ -11,21 +11,21 @@ namespace oop_5
         // для 6 лабы
         int Price { get; }
         int LifeTime { get; }
-        protected bool IsSold { get; set;}
-        // было в 5 лабе
+        protected CONDITION IsSold { get; set; }
+
         void ToSell()
         {
-            if (!IsSold)
+            if (IsSold == 0)
             {
                 Console.WriteLine("Товар продан.");
-                IsSold = true;
+                IsSold = CONDITION.SOLD;
             }
             else
             {
                 Console.WriteLine("Товар нельзя продать снова -- он уже продан.");
-            }            
+            }
         }
-
+        // было в 5 лабе
         void DoThing()
         {
             Console.WriteLine("Товар делает штуку по-интерфейсовски.");
@@ -98,7 +98,7 @@ namespace oop_5
 
         public override string ToString()
         {
-            return $"Сканер типа {GetType()}, работает ли: {isRunning}, продан ли: {_is_sold}.";
+            return $"Сканер типа {GetType()}, работает ли: {isRunning}, продан ли: {IsSold}.";
         }
     }
 
@@ -158,7 +158,7 @@ namespace oop_5
         }
         public override string ToString()
         {
-            return $"Планшет типа {GetType()}, работает ли: {isRunning}, продан ли: {_is_sold}.";
+            return $"Планшет типа {GetType()}, работает ли: {isRunning}, продан ли: {IsSold}.";
         }
     }
 
