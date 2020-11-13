@@ -4,6 +4,43 @@ using System.Linq;
 
 namespace oop_5
 {
+    // ---------------------------------------------------------------------------- добавлено в 7 лабе
+    // Для случаев, когда нельзя продать товар
+    [Serializable]
+    public class CantSellException : Exception
+    {
+        public CantSellException() { }
+        public CantSellException(string message) : base(message) { }
+        public CantSellException(string message, Exception inner) : base(message, inner) { }
+        protected CantSellException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }
+
+    // Для случаев, когда нельзя продать товар, потому что он уже продан
+    [Serializable]
+    public class AlreadySoldException : CantSellException
+    {
+        public AlreadySoldException() { }
+        public AlreadySoldException(string message) : base(message) { }
+        public AlreadySoldException(string message, Exception inner) : base(message, inner) { }
+        protected AlreadySoldException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }
+
+    // Для случаев, когда нельзя продать товар, потому что заданная цена некорректна
+    [Serializable]
+    public class InvalidPriceException : CantSellException
+    {
+        public InvalidPriceException() { }
+        public InvalidPriceException(string message) : base(message) { }
+        public InvalidPriceException(string message, Exception inner) : base(message, inner) { }
+        protected InvalidPriceException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }
+
     // ---------------------------------------------------------------------------- добавлено в 6 лабе
     class Lab
     {
