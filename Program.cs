@@ -235,13 +235,15 @@ namespace oop_5
                             Console.Write($"Успешно продан товар ");
                         }
                     }
-                    catch (InvalidPriceException)
+                    catch (InvalidPriceException e)
                     {
-                        Console.Write("Мы не можем продать по такой цене товар ");
+                        ConsoleLogger.Write(e);
+                        FileLogger.Write(e);
                     }
-                    catch (AlreadySoldException)
+                    catch (AlreadySoldException e)
                     {
-                        Console.Write("Продукт уже продан, наименование: ");
+                        ConsoleLogger.Write(e);
+                        FileLogger.Write(e);
                     }
                     finally
                     {
@@ -249,9 +251,10 @@ namespace oop_5
                     }
 
                 }
-                catch (CantSellException)
+                catch (CantSellException e)
                 {
-                    Console.WriteLine("Невозможно продать товар, потому что такого товара нет");
+                    ConsoleLogger.Write(e);
+                    FileLogger.Write(e);
                 }
             }
 
@@ -267,13 +270,15 @@ namespace oop_5
                         Console.Write($"Успешно продан товар ");
                     }
                 }
-                catch (InvalidPriceException)
+                catch (InvalidPriceException e)
                 {
-                    Console.Write("Мы не можем продать по такой цене товар ");
+                    ConsoleLogger.Write(e);
+                    FileLogger.Write(e);
                 }
-                catch (AlreadySoldException)
+                catch (AlreadySoldException e)
                 {
-                    Console.Write("Продукт уже продан, наименование: ");
+                    ConsoleLogger.Write(e);
+                    FileLogger.Write(e);
                 }
                 finally
                 {
@@ -298,13 +303,15 @@ namespace oop_5
                         Console.Write($"Успешно продан товар ");
                     }
                 }
-                catch (InvalidPriceException)
+                catch (InvalidPriceException e)
                 {
-                    Console.Write("Мы не можем продать по такой цене товар ");
+                    ConsoleLogger.Write(e);
+                    FileLogger.Write(e);
                 }
-                catch (AlreadySoldException)
+                catch (AlreadySoldException e)
                 {
-                    Console.Write("Продукт уже продан, наименование: ");
+                    ConsoleLogger.Write(e);
+                    FileLogger.Write(e);
                 }
                 finally
                 {
@@ -312,9 +319,10 @@ namespace oop_5
                 }
 
             }
-            catch (CantSellException)
+            catch (CantSellException e)
             {
-                Console.WriteLine("Невозможно продать товар, потому что такого товара нет");
+                ConsoleLogger.Write(e);
+                FileLogger.Write(e);
             }
             try
             {
@@ -323,7 +331,8 @@ namespace oop_5
             }
             catch (IndexOutOfRangeException e)
             {
-                Console.WriteLine(e.Message);
+                ConsoleLogger.Write(e);
+                FileLogger.Write(e);
             }
 
             try
@@ -332,7 +341,8 @@ namespace oop_5
             }
             catch (DivideByZeroException e)
             {
-                Console.WriteLine(e.Message);
+                ConsoleLogger.Write(e);
+                FileLogger.Write(e);
             }
 
             /*int b = 9;

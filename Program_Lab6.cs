@@ -253,6 +253,7 @@ namespace oop_5
         public static int Amount { get; private set; }
         int IProduct.Price { get => _data._price; }
         CONDITION IProduct.IsSold
+
         {
             get => _data._is_sold;
             set => _data._is_sold = value;

@@ -1,0 +1,17 @@
+
+13.11.2020 17:22:33 | Error | Exception of type 'oop_5.InvalidPriceException' was thrown.
+13.11.2020 17:22:33 | Error | Exception of type 'oop_5.AlreadySoldException' was thrown.
+13.11.2020 17:22:33 | Error | Exception of type 'oop_5.CantSellException' was thrown.
+13.11.2020 17:22:33 | Error | Index was outside the bounds of the array.
+13.11.2020 17:22:33 | Error | Attempted to divide by zero.
+13.11.2020 17:22:45 | Error | Exception of type 'oop_5.InvalidPriceException' was thrown.
+13.11.2020 17:22:45 | Error | Exception of type 'oop_5.AlreadySoldException' was thrown.
+13.11.2020 17:22:45 | Error | Exception of type 'oop_5.CantSellException' was thrown.
+13.11.2020 17:22:45 | Error | Index was outside the bounds of the array.
+13.11.2020 17:22:45 | Error | Attempted to divide by zero.
+13.11.2020 17:22:49 | Error | Exception of type 'oop_5.InvalidPriceException' was thrown.
+13.11.2020 17:22:49 | Error | Exception of type 'oop_5.InvalidPriceException' was thrown.
+13.11.2020 17:22:49 | Error | Exception of type 'oop_5.AlreadySoldException' was thrown.
+13.11.2020 17:22:49 | Error | Exception of type 'oop_5.CantSellException' was thrown.
+13.11.2020 17:22:49 | Error | Index was outside the bounds of the array.
+13.11.2020 17:22:49 | Error | Attempted to divide by zero.
