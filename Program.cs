@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,16 +20,21 @@ namespace oop_5
             Console.WriteLine($"{Id}| срок службы (в годах): {LifeTime}| цена: {Price} | продано ли: {IsSold}");
         }
 
-        void ToSell()
+        bool ToSell()
         {
-            if (IsSold == 0)
+            // модифицировано для 7й лабы
+            if (Price < 20)
             {
-                Console.WriteLine("Товар продан.");
-                IsSold = CONDITION.SOLD;
+                throw new InvalidPriceException();
             }
-            else
+            else if(IsSold == CONDITION.SOLD)
             {
-                Console.WriteLine("Товар нельзя продать снова -- он уже продан.");
+                throw new AlreadySoldException();
+            }
+            else 
+            {
+                IsSold = CONDITION.SOLD;
+                return true;
             }
         }
         // было в 5 лабе
@@ -174,15 +180,14 @@ namespace oop_5
     }
 
 
+
     class Program
     {
         static void Main(string[] args)
         {
             var comp = new Computer();
             var comp2 = new Computer();
-            var comp3 = new Computer();
-            var scan = new Scaner();
-            var scan2 = new Scaner();
+            var scan = new Scaner();;
             var tabl = new Tablet();
 
             var lab = new Lab();
@@ -202,9 +207,7 @@ namespace oop_5
 
             lab.Add(comp);
             lab.Add(comp2);
-            lab.Add(comp3);
             lab.Add(scan);
-            lab.Add(scan2);
             lab.Add(tabl);
 
             Console.WriteLine("Весь массив:");
@@ -217,12 +220,123 @@ namespace oop_5
             lab.Sort();
             Console.WriteLine();
 
-            lab.Remove(comp2);
-            lab.Remove(scan2);
-            Console.WriteLine("Удалили компьютер№2 и сканер №2:");
-            lab.Print();
-            Console.WriteLine();
 
+            //--------------------
+            for (int i = 0; i < lab.Products.Count; i++)
+            {
+                try
+                {
+                    IProduct buff = lab[i];
+
+                    try
+                    {
+                        if (lab[i].ToSell())
+                        {
+                            Console.Write($"Успешно продан товар ");
+                        }
+                    }
+                    catch (InvalidPriceException)
+                    {
+                        Console.Write("Мы не можем продать по такой цене товар ");
+                    }
+                    catch (AlreadySoldException)
+                    {
+                        Console.Write("Продукт уже продан, наименование: ");
+                    }
+                    finally
+                    {
+                        lab[i].Print();
+                    }
+
+                }
+                catch (CantSellException)
+                {
+                    Console.WriteLine("Невозможно продать товар, потому что такого товара нет");
+                }
+            }
+
+            //--------------------
+            try
+            {
+                IProduct buff = lab[lab.Products.Count - 1];
+
+                try
+                {
+                    if (lab[lab.Products.Count - 1].ToSell())
+                    {
+                        Console.Write($"Успешно продан товар ");
+                    }
+                }
+                catch (InvalidPriceException)
+                {
+                    Console.Write("Мы не можем продать по такой цене товар ");
+                }
+                catch (AlreadySoldException)
+                {
+                    Console.Write("Продукт уже продан, наименование: ");
+                }
+                finally
+                {
+                    lab[lab.Products.Count - 1].Print();
+                }
+
+            }
+            catch (CantSellException)
+            {
+                Console.WriteLine("Невозможно продать товар, потому что такого товара нет");
+            }
+            
+            //--------------------
+            try
+            {
+                IProduct buff = lab[lab.Products.Count];
+
+                try
+                {
+                    if (lab[lab.Products.Count].ToSell())
+                    {
+                        Console.Write($"Успешно продан товар ");
+                    }
+                }
+                catch (InvalidPriceException)
+                {
+                    Console.Write("Мы не можем продать по такой цене товар ");
+                }
+                catch (AlreadySoldException)
+                {
+                    Console.Write("Продукт уже продан, наименование: ");
+                }
+                finally
+                {
+                    lab[lab.Products.Count].Print();
+                }
+
+            }
+            catch (CantSellException)
+            {
+                Console.WriteLine("Невозможно продать товар, потому что такого товара нет");
+            }
+            try
+            {
+                String a = "";
+                Console.WriteLine(a[1]);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                throw new DivideByZeroException();
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            /*int b = 9;
+            Debug.Assert(b > 10, "Значение должно быть больше 10");*/
         }
     }
 }

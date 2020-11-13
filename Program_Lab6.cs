@@ -5,7 +5,7 @@ using System.Linq;
 namespace oop_5
 {
     // ---------------------------------------------------------------------------- добавлено в 7 лабе
-    // Для случаев, когда нельзя продать товар
+    // Для случаев, когда нельзя продать товар непонятно почему
     [Serializable]
     public class CantSellException : Exception
     {
@@ -44,6 +44,20 @@ namespace oop_5
     // ---------------------------------------------------------------------------- добавлено в 6 лабе
     class Lab
     {
+        // добавлено в 7 лабе для генерации исключений
+        internal IProduct this[int i]
+        {
+            get
+            {
+                if (i >= Products.Count)
+                {
+                    throw new CantSellException();
+                }
+
+                return Products[i];
+            }
+        }
+
         private List<IProduct> products;
         public List<IProduct> Products
         {
@@ -190,7 +204,7 @@ namespace oop_5
             _data = new Data();
 
             _data._is_sold = CONDITION.UNSOLD;
-            _data._price = rr.Next(10, 100);
+            _data._price = Amount*10;
             _data._life_time = rr.Next(1, 5);
             _data._id = $"Computer{Amount}";
         }
@@ -231,7 +245,7 @@ namespace oop_5
             _data = new Data();
 
             _data._is_sold = CONDITION.UNSOLD;
-            _data._price = rr.Next(10, 100);
+            _data._price = rr.Next(20, 100);
             _data._life_time = rr.Next(1, 5);
             _data._id = $"Tablet{Amount}";
         }
